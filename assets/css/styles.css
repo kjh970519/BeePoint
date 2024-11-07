@@ -1,0 +1,180 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    user-select: none;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.displaynone {
+    display: none;
+}
+
+.bg-container {
+    position: relative;
+    width: 800px;
+    height: 600px;
+    /*width: 100%;*/
+    /*height: 100%;*/
+    /*min-width: 800px;*/
+    /*min-height: 600px;*/
+    /*max-width: 1920px;*/
+    /*max-height: 1080px;*/
+    background: linear-gradient(to bottom, #4f4f4f, #333333);
+
+    object-fit: cover;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.signin {
+
+}
+.signin .sec {
+    position: absolute;
+    width: 50%;
+    height: 60%;
+    max-width: 400px;
+    max-height: 360px;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+}
+.signin .sec .info {
+    width: 100%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.signin .sec .info .id,
+.signin .sec .info .pw {
+    width: 100%;
+    height: 47%;
+}
+.signin .sec .info .id input[type=text],
+.signin .sec .info .pw input[type=password] {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 3px;
+    outline: none;
+    padding: 1vw;
+    font-size: 2vw;
+}
+.signin .sec .btn-sec {
+    position: relative;
+    width: 100%;
+    height: 40%;
+}
+.signin .sec .btn-sec .check-save {
+    position: absolute;
+    width: 100%;
+    height: 30%;
+    top: 0;
+    display: flex;
+    align-items: center;
+}
+.signin .sec .btn-sec .check-save input[type=checkbox]{
+    margin-right: 1rem;
+    transform: scale(1.8);
+    -webkit-transform: scale(1.8); /* Safari 호환성 */
+}
+.signin .sec .btn-sec .check-save label {
+    color: #FFFFFF;
+}
+.signin .sec .btn-sec .btn-signin {
+    position: absolute;
+    width: 100%;
+    height: 70%;
+    bottom: 0;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(to bottom, #000000, #333333);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* 버튼에 그림자 추가 */
+    transition: all 0.2s ease; /* 애니메이션 속성 */
+    font-weight: 700;
+    font-size: 2vw;
+    color: #FFFFFF;
+    outline: none;
+}
+/* 호버 효과 */
+.signin .sec .btn-sec .btn-signin:hover {
+    background: linear-gradient(to bottom, #333333, #555555); /* 밝아지는 그라디언트 */
+    transform: translateY(-2px); /* 버튼이 살짝 올라가는 효과 */
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.4); /* 호버 시 그림자 확대 */
+}
+/* 클릭(활성화) 효과 */
+.signin .sec .btn-sec .btn-signin:active {
+    transform: translateY(2px); /* 버튼이 눌리는 효과 */
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2); /* 눌렀을 때 그림자 줄이기 */
+}
+
+.waiting {
+    background: #000000;
+}
+.waiting .mySwiper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.waiting .mySwiper .swiper-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.waiting .mySwiper .swiper-wrapper .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.waiting .mySwiper .swiper-wrapper .swiper-slide img {
+    object-fit: cover;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+}
+.waiting .btn-point-add-area {
+    position: absolute;
+    width: 100%;
+    height: 25%;
+    bottom: 0;
+    z-index: 2;
+}
+.waiting .btn-point-add-area div {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    width: 40%;
+    height: 70%;
+}
+.waiting .btn-point-add-area div .btn-point-add {
+    width: 100%;
+    height: 100%;
+    font-size: 2.5vw;
+    color: #FFFFFF;
+    background: linear-gradient(to bottom, #000000, #333333);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* 버튼에 그림자 추가 */
+    border: 0;
+    border-radius: 10vw;
+}
+/* 호버 효과 */
+.waiting .btn-point-add-area div .btn-point-add:hover {
+    background: linear-gradient(to bottom, #333333, #555555); /* 밝아지는 그라디언트 */
+    transform: translateY(-2px); /* 버튼이 살짝 올라가는 효과 */
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.4); /* 호버 시 그림자 확대 */
+}
+/* 클릭(활성화) 효과 */
+.waiting .btn-point-add-area div .btn-point-add:active {
+    transform: translateY(2px); /* 버튼이 눌리는 효과 */
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2); /* 눌렀을 때 그림자 줄이기 */
+}
