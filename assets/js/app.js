@@ -2,14 +2,17 @@ var _app = {};
 $(document).ready(function() {
     _app = {
         is_touch: false,
+        numbers: [0, 1, 0],
         init: function() {
             _app.eventHandler();
         },
         eventHandler: function() {
             $(".btn-point-add").on("click", _app.changePage);
+            $(".btn-number").on("click", _app.inputNumber);
+            $(".btn-enver").on("click", _app.requestAddPoint)
         },
         signIn: function() {
-            if (!_app.is_touch) return;
+            if (_app.is_touch) return;
             _app.is_touch = true;
             event.preventDefault();
             var db = $("#signin_form").serializePost();
@@ -40,6 +43,9 @@ $(document).ready(function() {
                     if (obj.status == 'ok') {
                         location.reload();
                     }
+                    else {
+
+                    }
                 }
             });
             _app.is_touch = false;
@@ -55,13 +61,78 @@ $(document).ready(function() {
             });
         },
         changePage: function(obj) {
-            if (!_app.is_touch) return;
+            if (_app.is_touch) return;
             _app.is_touch = true;
 
-            let page = $(obj.currentTarget).closest('section').data('page');
-            let target = $(obj.currentTarget).data('target');
+            if (obj.type) obj = this;
+
+            let page = $(obj).closest('section').data('page');
+            let target = $(obj).data('target');
             $(`.${page}`).addClass('displaynone');
             $(`.${target}`).removeClass('displaynone');
+
+            _app.is_touch = false;
+        },
+        inputNumber: function(obj) {
+            let v = $(this).data('value');
+            switch (v) {
+                case "del":
+                    _app.numbers.pop();
+                    $($(".input-number .number")[_app.numbers.length]).removeClass("fill");
+                    $($(".input-number .number")[_app.numbers.length]).children('span').html($($(".input-number .number")[_app.numbers.length]).data('default'));
+                    break;
+                case "all-del":
+                    _app.numbers = [];
+                    break;
+                default:
+                    if (_app.numbers > 10) return;
+                    _app.numbers.push(v);
+                    $($(".input-number .number")[_app.numbers.length-1]).children('span').html(v);
+            }
+            _app.numbers.forEach(function(number, i) {
+                $($(".input-number .number")[i]).addClass("fill");
+            });
+            if (_app.numbers.length > 3 && _app.numbers.length < 8) {
+                $($(".input-number .separator")[0]).addClass('fill');
+                $($(".input-number .separator")[1]).removeClass('fill');
+            }
+            else if (_app.numbers.length >= 8) {
+                $($(".input-number .separator")[1]).addClass('fill');
+            }
+            else if (_app.numbers.length <= 3 && _app.numbers.length > 0) {
+                $($(".input-number .separator")[0]).removeClass('fill');
+                $($(".input-number .separator")[1]).removeClass('fill');
+            }
+            else if (_app.numbers.length < 1) {
+                for (var i=0; i < $(".input-number .number").length; i++) {
+                    $($(".input-number .number")[i]).children('span').html($($(".input-number .number")[i]).data('default'));
+                    $(".input-number .fill").removeClass('fill');
+                }
+            }
+        },
+        requestAddPoint: function() {
+            if (_app.is_touch) return;
+            _app.is_touch = true;
+
+            if (_app.numbers.length < 10) {
+                alertify.alert("알림", "전화번호를 정확히 입력해주세요.");
+                return;
+            }
+            else {
+                $.ajax({
+                    url: "Point/RequestAddPoint",
+                    method: "POST",
+                    data: {
+                        mobile: _app.numbers
+                    },
+                    dataType: "JSON",
+                    success: function(obj) {
+                        if (obj.status == 'ok') {
+                            _app.changePage(this);
+                        }
+                    }.bind(this)
+                });
+            }
 
             _app.is_touch = false;
         }

@@ -32,13 +32,23 @@ class Main extends MY_Controller {
                     redirect();
                 }
                 else {
-                    if ($data['signin_info']['check_auto']) $this->session->set_userdata('user_id', $data['signin_info']['user_id']);
+                    if ($data['signin_info']['check_auto']) {
+                        $this->session->set_userdata('user_id', $data['signin_info']['user_id']);
+                    }
                 }
             }
             else {
                 // 토큰값이 다를 경우
                 if (!$this->user->autoSignIn($this->session->userdata('user_id'), $this->session->userdata('token'))) {
                     $this->user->closeSession();
+                    redirect();
+                }
+            }
+        }
+        else {
+            if ($data['signin_info']['check_auto']) {
+                if ($this->user->autoSignIn($data['signin_info']['user_id'], $data['signin_info']['token'])) {
+                    $this->session->set_userdata('user_id', $data['signin_info']['user_id']);
                     redirect();
                 }
             }

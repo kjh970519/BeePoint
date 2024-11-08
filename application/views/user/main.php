@@ -7,7 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>BeePoint</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <link rel="stylesheet" href="<?=base_url('assets/css/styles.css'); ?>">
+        <link rel="stylesheet" href="<?=base_url('assets/css/styles.css?v='.date('YmdHis')); ?>">
 
         <!-- alertify -->
         <!-- JavaScript -->
@@ -50,7 +50,7 @@
             </form>
         </section>
         <? } else { ?>
-        <section class="bg-container waiting" data-page="waiting">
+        <section class="bg-container waiting " data-page="waiting">
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
@@ -77,7 +77,102 @@
             </div>
         </section>
         <section class="bg-container request displaynone" data-page="request">
-
+            <div class="left-area">
+                <div class="input-number">
+                    <div class="number fill" data-default="0">
+                        <span>0</span>
+                    </div>
+                    <div class="number fill" data-default="1">
+                        <span>1</span>
+                    </div>
+                    <div class="number fill" data-default="0">
+                        <span>0</span>
+                    </div>
+                    <div class="separator">
+                        <span>-</span>
+                    </div>
+                    <div class="number" data-default="0">
+                        <span>0</span>
+                    </div>
+                    <div class="number" data-default="0">
+                        <span>0</span>
+                    </div>
+                    <div class="number" data-default="0">
+                        <span>0</span>
+                    </div>
+                    <div class="number" data-default="0">
+                        <span>0</span>
+                    </div>
+                    <div class="separator">
+                        <span>-</span>
+                    </div>
+                    <div class="number" data-default="0">
+                        <span>0</span>
+                    </div>
+                    <div class="number" data-default="0">
+                        <span>0</span>
+                    </div>
+                    <div class="number" data-default="0">
+                        <span>0</span>
+                    </div>
+                    <div class="number" data-default="0">
+                        <span>0</span>
+                    </div>
+                </div>
+            </div>
+            <div class="right-area">
+                <div class="full-edition">
+                    <div class="line">
+                        <div class="btn-number" data-value="1">
+                            <span>1</span>
+                        </div>
+                        <div class="btn-number" data-value="2">
+                            <span>2</span>
+                        </div>
+                        <div class="btn-number" data-value="3">
+                            <span>3</span>
+                        </div>
+                    </div>
+                    <div class="line">
+                        <div class="btn-number" data-value="4">
+                            <span>4</span>
+                        </div>
+                        <div class="btn-number" data-value="5">
+                            <span>5</span>
+                        </div>
+                        <div class="btn-number" data-value="6">
+                            <span>6</span>
+                        </div>
+                    </div>
+                    <div class="line">
+                        <div class="btn-number" data-value="7">
+                            <span>7</span>
+                        </div>
+                        <div class="btn-number" data-value="8">
+                            <span>8</span>
+                        </div>
+                        <div class="btn-number" data-value="9">
+                            <span>9</span>
+                        </div>
+                    </div>
+                    <div class="line">
+                        <div class="btn-number" data-value="all-del">
+                            <span>×</span>
+                        </div>
+                        <div class="btn-number" data-value="0">
+                            <span>0</span>
+                        </div>
+                        <div class="btn-number" data-value="del">
+                            <span>←</span>
+                        </div>
+                    </div>
+                    <div class="line enter">
+                        <div class="btn-enver" data-target="processing">
+                            <span>ENTER</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
         <section class="bg-container processing displaynone" data-page="processing">
 
@@ -88,7 +183,7 @@
         <? } ?>
     </body>
 </html>
-<script src="<?=base_url('assets/js/app.js'); ?>"></script>
+<script src="<?=base_url('assets/js/app.js?v='.date('YmdHis')); ?>"></script>
 
 <? if ($this->session->userdata('user_id')) { ?>
     <!-- Link Swiper's CSS -->
