@@ -35,7 +35,7 @@ $(document).ready(function() {
             }
 
             $.ajax({
-                url: "User/SignIn",
+                url: "Sign/SignIn",
                 method: "POST",
                 data: db,
                 dataType: "JSON",
@@ -85,7 +85,7 @@ $(document).ready(function() {
                     _app.numbers = [];
                     break;
                 default:
-                    if (_app.numbers > 10) return;
+                    if (_app.numbers.length > 10) return;
                     _app.numbers.push(v);
                     $($(".input-number .number")[_app.numbers.length-1]).children('span').html(v);
             }
@@ -128,13 +128,28 @@ $(document).ready(function() {
                     dataType: "JSON",
                     success: function(obj) {
                         if (obj.status == 'ok') {
-                            _app.changePage(this);
+                            // _app.changePage(this);
+
+                            // _app.connectWs();
                         }
                     }.bind(this)
                 });
             }
 
             _app.is_touch = false;
+        },
+        connectWs: function() {
+            const socket = new WebSocket('ws://localhost:8080');
+            socket.onopen = function() {
+                console.log("Connected to WebSocket server");
+            };
+            socket.onmessage = function(event) {
+                // 수신한 데이터를 원하는 방식으로 업데이트
+                const data = event.data;
+            };
+            socket.onclose = function() {
+                console.log("Disconnected from WebSocket server");
+            };
         }
     }
     _app.init();

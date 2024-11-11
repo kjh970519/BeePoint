@@ -8,5 +8,17 @@ class MY_Controller extends CI_Controller {
         // 공통 기능 또는 라이브러리 로드 등 설정
     }
 
-    // 추가적인 공통 메서드들을 여기에 추가할 수 있습니다
+    // 뷰 렌더링 메서드
+    protected function view($view, $data = []) {
+        if ($this->yield) {
+            $this->load->view('adm/layout/header', $data);
+        }
+
+        $this->load->view($view, $data);
+
+        if ($this->yield) {
+            $this->load->view('adm/layout/footer', $data);
+        }
+    }
+
 }

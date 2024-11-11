@@ -23,7 +23,12 @@ class User extends MY_Controller {
     {
         parent::__construct();
 
-        $this->load->model('User_model', 'user');
+        $this->load->model('Sign_model', 'user');
+    }
+
+    public function index()
+    {
+        $this->load->view('sign');
     }
 
     public function SignIn()

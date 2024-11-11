@@ -3,22 +3,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Point extends MY_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/userguide3/general/urls.html
-	 */
-	public function RequestAddPoint()
+    public function __construct()
+    {
+        parent::__construct();
+
+        $data['signin_info'] = json_decode($this->crypto->dec(get_cookie('signin_info')), true);
+        $this->token = $data['signin_info']['token'];
+    }
+
+    public function RequestAddPoint()
 	{
         $finResult = array(
             'status' => 'ok',
@@ -38,8 +31,25 @@ class Point extends MY_Controller {
         }
         $_mobile = implode("", $_mobile);
 
-        
+        $this->sendDataToWebSocket($_mobile);
 
         echo json_encode($finResult);
+    }
+
+    public function sendDataToWebSocket($mobile)
+    {
+        $url = 'http://localhost:8080/send';
+        $data = array('token' => $this->token,
+                      'mobile' => $mobile);
+
+        // cURL을 이용한 HTTP POST 요청
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+
+        $response = curl_exec($ch);
+        curl_close($ch);
     }
 }
