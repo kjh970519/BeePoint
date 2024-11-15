@@ -39,13 +39,20 @@ wss.on('connection', (ws, req) => {
 app.post('/send', (req, res) => {
     const { token, mobile } = req.body;
 
-    console.log(token);
-
+    let is_send = false;
     // 해당 userId와 일치하는 클라이언트에게만 메시지를 전송
     for (let [client, id] of clients) {
         if (id === token && client.readyState === WebSocket.OPEN) {
             client.send(`Message for token ${token}: ${mobile}`);
+            is_send = true;
+            break;
         }
+    }
+    if (is_send) {
+        res.json({ status: 'success', token: token, mobile: mobile });
+    }
+    else {
+        res.json({ status: 'fail', message: 'not connect' });
     }
 });
 

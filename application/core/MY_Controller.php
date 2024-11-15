@@ -11,6 +11,22 @@ class MY_Controller extends CI_Controller {
     // 뷰 렌더링 메서드
     protected function view($view, $data = []) {
         if ($this->yield) {
+
+            // 카테고리를 가져온다
+            $this->load->model('admin/Category_model', 'category');
+            $r = $this->category->getCategory();
+
+            $categories;
+            foreach ($r['parents_categories'] AS $idx => $pc) {
+                $categories[] = $pc;
+                foreach ($r['children_categories'] AS $cc) {
+                    if ($pc['idx'] == $cc['parent_category_idx']) {
+                        $categories[$idx]['sub_categories'][] = $cc;
+                    }
+                }
+            }
+            $data['categories'] = $categories;
+
             $this->load->view('adm/layout/header', $data);
         }
 
