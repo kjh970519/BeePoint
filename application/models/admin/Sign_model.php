@@ -22,7 +22,7 @@ class Sign_model extends CI_Model
             "last_login_at" => date('YmdHis'),
             "last_login_ip" => $this->input->ip_address(),
         );
-        $this->db->set($update_dt)->update('tbl_admin');
+        $this->db->where('id', $dt['id'])->set($update_dt)->update('tbl_admin');
     }
 
     function checkToken($dt)

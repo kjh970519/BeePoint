@@ -12,6 +12,10 @@ class MY_Controller extends CI_Controller {
     protected function view($view, $data = []) {
         if ($this->yield) {
 
+            $base_url = base_url();
+            $current_url = current_url();
+            $data['path'] = str_replace($base_url, "",$current_url);
+
             // 카테고리를 가져온다
             $this->load->model('admin/Category_model', 'category');
             $r = $this->category->getCategory();
@@ -21,6 +25,9 @@ class MY_Controller extends CI_Controller {
                 $categories[] = $pc;
                 foreach ($r['children_categories'] AS $cc) {
                     if ($pc['idx'] == $cc['parent_category_idx']) {
+                        if ($data['path'] == $cc['path']) {
+                            $data['path_nm'] = "{$pc['category_nm']} / {$cc['category_nm']}";
+                        }
                         $categories[$idx]['sub_categories'][] = $cc;
                     }
                 }
@@ -29,7 +36,6 @@ class MY_Controller extends CI_Controller {
 
             $this->load->view('adm/layout/header', $data);
         }
-
         $this->load->view($view, $data);
 
         if ($this->yield) {

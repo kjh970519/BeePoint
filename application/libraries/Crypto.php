@@ -53,4 +53,16 @@ class Crypto
     public function set_cookie_data($key, $dt) {
         set_cookie($this->enc($key), $this->enc(json_encode($dt)), 86400 * 365);
     }
+
+    public function get_session_type() {
+        return $this->get_session_data('admin_login_info')['type'];
+    }
+
+    public function get_session_idx() {
+        return $this->get_session_data('admin_login_info')['idx'];
+    }
+
+    public function get_session_id() {
+        return $this->get_session_data('admin_login_info')['id'];
+    }
 }

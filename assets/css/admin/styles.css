@@ -77,3 +77,184 @@ body {
     background-color: #ecf0f1;
     min-height: 100vh;
 }
+
+.content .top-area {
+    position: relative;
+    width: 100%;
+    height: 80px;
+    background: #b4d0a1;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.content .top-area h2 {
+    margin-left: 20px;
+    background-color: #a8d5a2;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.pages {
+    overflow-x: visible;
+    font-size: 13px;
+    font: arial;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+}
+
+.pages a {
+    border: 1px solid #9AAFE5;
+    text-decoration: none;
+}
+
+.pages a, .pages span {
+    color: #003366;
+    display: block;
+    float: left;
+    padding: 0.5em 1em;
+    margin-right: 1em;
+    background: #fff;
+}
+
+.pages span.current {
+    border: 1px solid #2E6AB1;
+    font-weight: bold;
+    background: #2E6AB1;
+    color: #fff;
+}
+
+.pagination {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.user-list {
+    position: relative;
+    width: 100%;
+    height: 700px;
+}
+
+.list table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.list table thead tr {
+    background-color: #6cbb77;
+    color: #ffffff;
+    text-align: center;
+    font-weight: bold;
+}
+
+.list table th, .user-list table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+
+.list table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.list table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.list table tbody tr:last-of-type {
+    border-bottom: 2px solid #6cbb77;
+}
+
+.list table tbody tr:hover {
+    background-color: #eaf9e7;
+    cursor: pointer;
+}
+
+.toggle-container {
+    text-align: center;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    margin: 5px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-switch .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 30px;
+}
+
+.toggle-switch .slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 15px;
+    left: 3px;
+    bottom: 2px;
+    background-color: white;
+    transition: 0.1s;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-switch input:checked + .slider {
+    background-color: #4caf50;
+}
+
+.toggle-switch input:disabled + .slider {
+    background-color: #e0e0e0; /* 회색으로 표시 */
+    cursor: not-allowed; /* 클릭 불가 커서 */
+}
+
+.toggle-switch input:checked + .slider:before {
+    transform: translateX(19px);
+}
+
+#toggle-status {
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+}
+
+.benefits {
+    margin: 10px !important;
+    flex-direction: column;
+}
+.benefits .col-md-4 {
+    max-width: 100% !important;
+}
+.benefits .card-header,
+.benefits .card-body {
+    padding: 5px !important;
+}
+.benefits .card-body p {
+    margin: 0 !important;
+}
+
+.benefits .form-control {
+    display: unset;
+    width: 30%;
+}

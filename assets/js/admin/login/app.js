@@ -19,6 +19,9 @@ $(document).ready(function() {
                     if (data.status == 'ok') {
                         location.reload();
                     }
+                    else {
+                        alertify.alert("알림", data.msg);
+                    }
                 }
             });
         }
